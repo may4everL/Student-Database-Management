@@ -2,7 +2,7 @@ package com.example.studentmanagement.api;
 
 import com.example.studentmanagement.exceptions.InvalidCourseClassException;
 import com.example.studentmanagement.exceptions.StudentEmptyNameException;
-import com.example.studentmanagement.exceptions.StudentNonExistanceException;
+import com.example.studentmanagement.exceptions.StudentNonExistenceException;
 import com.example.studentmanagement.model.Student;
 import com.example.studentmanagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +61,7 @@ public class StudentController {
         try {
             Student updatedStudent = studentService.assignClass(studentId, classId);
             return ResponseEntity.ok("Assigned class : " + updatedStudent.toString());
-        } catch(StudentNonExistanceException e) {
+        } catch(StudentNonExistenceException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch(InvalidCourseClassException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

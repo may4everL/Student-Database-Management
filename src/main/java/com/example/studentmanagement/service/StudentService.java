@@ -4,7 +4,7 @@ import com.example.studentmanagement.dao.CourseClassDao;
 import com.example.studentmanagement.dao.StudentDao;
 import com.example.studentmanagement.exceptions.InvalidCourseClassException;
 import com.example.studentmanagement.exceptions.StudentEmptyNameException;
-import com.example.studentmanagement.exceptions.StudentNonExistanceException;
+import com.example.studentmanagement.exceptions.StudentNonExistenceException;
 import com.example.studentmanagement.mapper.StudentMapper;
 import com.example.studentmanagement.model.CourseClass;
 import com.example.studentmanagement.model.Student;
@@ -38,7 +38,7 @@ public class StudentService {
 
     public Student updateStudent(Student student) {
         if(student.getId() == null || !studentDao.existsById(student.getId())) {
-            throw new StudentNonExistanceException("Cannot find student ID!");
+            throw new StudentNonExistenceException("Cannot find student ID!");
         }
 
         return studentDao.save(student);
@@ -46,7 +46,7 @@ public class StudentService {
 
     public Student assignClass(Long studentId, Long classId) {
         if(!studentDao.existsById(studentId)) {
-            throw new StudentNonExistanceException("Cannot find student ID: " + studentId);
+            throw new StudentNonExistenceException("Cannot find student ID: " + studentId);
         }
         if(!courseClassDao.existsById(classId)) {
             throw new InvalidCourseClassException("Cannot find class ID: " + classId);
